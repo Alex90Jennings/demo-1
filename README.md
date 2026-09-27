@@ -10,12 +10,15 @@ From the repository root, paste this into a terminal:
 yarn install
 (cd frontend && yarn install)
 yarn start &
-(cd frontend && yarn dev)
+(cd frontend && yarn dev) &
+until curl -s -o /dev/null localhost:3000 && curl -s -o /dev/null localhost:3001; do sleep 1; done; printf "\nOpen the welcome page in your browser? [y/N] "; read -r answer; case "$answer" in [Yy]*) open http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5 2>/dev/null || xdg-open http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5 ;; esac; wait
 ```
 
-This installs both apps, starts the NestJS backend in the background on <http://localhost:3000>, and starts the Next.js frontend on <http://localhost:3001>. Once both are up, open <http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5>.
+This installs both apps and starts the NestJS backend on <http://localhost:3000> and the Next.js frontend on <http://localhost:3001>. Once both servers respond, it asks whether to open the welcome page. Type `y` and press Enter to open <http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5> in your browser (using `open` on macOS or `xdg-open` on Linux). Any other answer leaves the servers running without opening anything.
 
-To stop, press `Ctrl+C` to stop the frontend, then run `kill %1` to stop the backend.
+The wait, the question and the browser step are all on the last line on purpose. When a block is pasted, any lines after `read` would be taken as its answer.
+
+To stop, press `Ctrl+C`, then run `kill %1 %2` to stop both servers.
 
 ## Requirements
 
