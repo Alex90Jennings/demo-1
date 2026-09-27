@@ -2,6 +2,21 @@
 
 A small NestJS REST API, plus a Next.js frontend in `frontend/`, that generates personalised, channel-agnostic customer messages (for email, SMS or landing pages) from user data in `data.json`.
 
+## Quick start
+
+From the repository root, paste this into a terminal:
+
+```bash
+yarn install
+(cd frontend && yarn install)
+yarn start &
+(cd frontend && yarn dev)
+```
+
+This installs both apps, starts the NestJS backend in the background on <http://localhost:3000>, and starts the Next.js frontend on <http://localhost:3001>. Once both are up, open <http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5>.
+
+To stop, press `Ctrl+C` to stop the frontend, then run `kill %1` to stop the backend.
+
 ## Requirements
 
 - **Node.js 18.18 or later** for both the backend and the frontend (check with `node -v`). Both have been installed, tested and built on Node 18.20.
@@ -83,7 +98,7 @@ yarn install
 yarn dev
 ```
 
-Open http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5
+Open <http://localhost:3001/welcome/ff535484-6880-4653-b06e-89983ecf4ed5>
 
 ```bash
 yarn test
@@ -132,7 +147,7 @@ frontend/tests/                                  Vitest specs
 - **Hover states.** The primary button darkens and the secondary button gets a faint green tint on hover.
 - **Reduced motion.** Button colour transitions turn off when the user has asked for less motion.
 - **Safe areas.** Page padding is at least 16px, and grows to clear the notch and home bar on notched iPhones.
-- **Cropped image.** The supplied cat image had a dark rounded border baked into its edges, which showed inside the card. `public/cat.jpg` is a cropped, compressed JPEG of it (265KB instead of 1.5MB).
+- **Cat photos.** The source photo is a tall 1080×1920 shot where the cat is small. `public/cat.jpg` is a 640×460 crop around the cat in the card image's shape (65KB), and `public/cat-avatar.jpg` is a 160×160 crop of its face for the 53px mobile avatar (7KB), so the face is recognisable at that size. `next/image` then serves each device a suitably sized WebP.
 - **Loading and error pages.** The design only shows the loaded card. I added a loading message and error pages for each case: "Customer not found" for unknown IDs, "No upcoming delivery" when no cats have an active subscription, and a retry screen for unexpected errors. All are announced to screen readers.
 
 **Formatting on the frontend.** The API returns `totalPrice` as a number and the UI formats it as `£134.00`, so every channel can present price its own way.
