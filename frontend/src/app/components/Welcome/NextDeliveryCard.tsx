@@ -5,6 +5,7 @@ import { Button } from "@/app/components/Shared/Button";
 import { FreeGiftBadge } from "@/app/components/Shared/FreeGiftBadge";
 
 const CAT_IMAGE = "/cat.jpg";
+const CAT_AVATAR = "/cat-avatar.jpg";
 
 type Props = {
   comms: NextDeliveryComms;
@@ -19,17 +20,17 @@ export function NextDeliveryCard({ comms }: Props) {
           alt=""
           fill
           sizes="(min-width: 768px) 339px, 1px"
-          className="object-cover object-[50%_40%]"
+          className="object-cover"
         />
       </div>
 
       <div className="px-4 pt-[37.5px] pb-[29px] md:flex md:flex-1 md:flex-col md:pt-10 md:pr-[30px] md:pb-7 md:pl-4">
         <Image
-          src={CAT_IMAGE}
+          src={CAT_AVATAR}
           alt=""
           width={53}
           height={53}
-          className="absolute inset-x-0 -top-[26.5px] mx-auto size-[53px] rounded-full border border-avatar-line object-cover object-[50%_35%] md:hidden"
+          className="absolute inset-x-0 -top-[26.5px] mx-auto size-[53px] rounded-full border border-avatar-line object-cover md:hidden"
         />
         <h1 className="text-base/[22px] font-bold tracking-design text-balance text-brand md:text-wrap">
           {comms.title}
